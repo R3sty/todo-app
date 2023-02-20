@@ -20,7 +20,6 @@ const TodoForm: React.FC<TodoFormProps> = ({onAddTodo}) => {
                 type="text"
                 value={todo}
                 onChange={event => setTodo(event.target.value)} />
-            <button type="submit">Add</button>
         </form>
     )
 };

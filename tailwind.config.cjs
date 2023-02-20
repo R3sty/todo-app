@@ -6,6 +6,7 @@ module.exports = {
 			mobile: '375px',
 		},
 		colors: {
+			red: '#FF0000',
 			light: {
 				gray: '#fafafa',
 				grayishBlue1: '#e4e5f1',
