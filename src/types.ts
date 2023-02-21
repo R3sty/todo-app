@@ -2,10 +2,30 @@ export interface TodoList {
     id: number
     todo: string
     completed: boolean
-    updateTodo: (id: number) => void;
-    deleteTodo: (id: number) => void;
 }
 
+export interface NewTodoState {
+    id: number
+    todo: string
+    completed: boolean
+}
 export interface TodoFormProps {
-    onAddTodo: (todo: string) => void;
+    onAddTodo: (value: NewTodoState) => void;
+}
+
+export interface TodoListRender {
+    id: number
+    todo: string
+    completed: boolean
+    index: number
+    updateItem: (id: number) => void;
+    deleteItem: (id: number) => void;
+}
+
+export interface TodoListRenderItem {
+    items: NewTodoState[];
+    updateItem: (id: number) => void;
+    deleteItem: (id: number) => void;
+    updateLocalItem: (data: any) => void;
+    filter: string
 }
