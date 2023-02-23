@@ -4,39 +4,30 @@ import { Todo } from "../types";
 interface TodoItemProps {
     todo: Todo;
     deleteTodo: (id: number) => void;
+    updateTodo: (updatedTodo: Todo) => void;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, deleteTodo }) => {
-    const [todos, setTodos] = useState<Todo[]>([]);
+const TodoItem: React.FC<TodoItemProps> = ({ todo, deleteTodo, updateTodo }) => {
+    const [completed, setCompleted] = useState<boolean>(todo.completed);
 
     const handleDeleteTodo = () => {
         deleteTodo(todo.id)
     };
 
-    const handleToggleTodo = (id:number) => {
-        setTodos(prevTodos => prevTodos.map(todo => {
-           
-            if (todo.id == id)
-            {
-                return {
-                    ...todo,
-                    completed:!todo.completed
-                }
-            }
-            return todo;
-            
-        }))
-    }
+    const handleToggleTodo = () => {
+        const updatedTodo = { ...todo, completed: !todo.completed };
+        updateTodo(updatedTodo);
+        console.log("Completed?:", todo.completed)
+    };
 
     return (
-        <li>
-            <input type="checkbox" checked={todo.completed} onChange={() => {
-                handleToggleTodo(todo.id);
-                console.log("Completed:", todo.completed);
-  }} />
-            {todo.text}
-            <button className="bg-red" onClick={handleDeleteTodo}>Delete Todo</button>
-        </li>
+        <div className="w-[337px] h-[48px] border-light-grayishBlue1 border-2 bg-light-gray rounded-t-md">
+            <li className="px-4 pt-2" >
+                <input  type="checkbox" checked={todo.completed} onClick={handleToggleTodo} />
+                <span className="px-4">{todo.text}</span>
+                <button className="bg-red" onClick={handleDeleteTodo}>Delete Todo</button>
+            </li>
+        </div>
     )
 };
 

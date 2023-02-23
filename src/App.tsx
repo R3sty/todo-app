@@ -5,28 +5,27 @@ import { Todo } from "./types";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem("todos") || "[]");
-    setTodos(storedTodos);
-  },[])
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos]);
-
+  
   const addTodo = (todo: Todo) => {
     setTodos([...todos, todo]);
   };
 
   const deleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id))
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const updateTodo = (updatedTodo: Todo) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === updatedTodo.id ? { ...todo, ...updatedTodo } : todo
+      )
+    );
   };
 
   return (
     <div className="">
       <Header />
-      <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo}/>
+      <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} updateTodo={updateTodo}/>
     </div>
   )
 }

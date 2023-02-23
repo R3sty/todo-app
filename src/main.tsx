@@ -5,7 +5,7 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <body className="bg-gray">
+    <body className="bg-gray font-josefin">
       <App />
     </body>
     

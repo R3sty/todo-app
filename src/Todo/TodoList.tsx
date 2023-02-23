@@ -6,9 +6,10 @@ interface TodoListProps {
     todos: Todo[];
     addTodo: (todo: Todo) => void;
     deleteTodo: (id: number) => void;
+    updateTodo: (id: Todo) => void;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, deleteTodo }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, deleteTodo, updateTodo }) => {
     const [newTodo, setNewTodo] = useState("");
 
     const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,19 +30,19 @@ const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, deleteTodo }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleNewTodoSubmit}>
+        <div className="flex flex-col items-center justify-center absolute z-50 top-[108px] left-[24px]">
+            <form onSubmit={handleNewTodoSubmit} className="pb-4">
                 <input
-                    className="border-2 border-y-dark-darkGrayishBlue2"
+                    className="w-[337px] h-[48px] border-light-gray rounded-md"
                     type="text"
                     value={newTodo}
                     onChange={handleNewTodoChange}
                     placeholder="Create a new todo..."
                 />
             </form>
-            <ul>
+            <ul >
                 {todos.map((todo) => (
-                    <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />
+                    <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} updateTodo={updateTodo} />
                 ))}
             </ul>
         </div>
