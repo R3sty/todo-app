@@ -1,34 +1,55 @@
-import { useState } from "react";
-import { Todo } from "../types";
+import { useEffect, useState } from 'react';
+import { TodoListRender } from '../types';
+import { Draggable } from 'react-beautiful-dnd';
 
-interface TodoItemProps {
-    todo: Todo;
-    deleteTodo: (id: number) => void;
-    updateTodo: (updatedTodo: Todo) => void;
-}
+const TodoItem: React.FC<TodoListRender> = ({
+	id,
+	todo,
+	completed,
+	index,
+	deleteTodo,
+	updateTodo,
+}) => {
+	const [isCompleted, setIsCompleted] = useState(false);
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, deleteTodo, updateTodo }) => {
-    const [completed, setCompleted] = useState<boolean>(todo.completed);
+	const updateItemStatus = (id: number) => {
+		return (event: React.MouseEvent) => {
+			updateTodo(id);
+			setIsCompleted(!isCompleted);
+			console.log('completed:', completed);
+			event.preventDefault();
+		};
+	};
 
-    const handleDeleteTodo = () => {
-        deleteTodo(todo.id)
-    };
+	useEffect(() => {
+		setIsCompleted(completed);
+	}, [completed]);
 
-    const handleToggleTodo = () => {
-        const updatedTodo = { ...todo, completed: !todo.completed };
-        updateTodo(updatedTodo);
-        console.log("Completed?:", todo.completed)
-    };
-
-    return (
-        <div className="w-[337px] h-[48px] border-light-grayishBlue1 border-2 bg-light-gray rounded-t-md">
-            <li className="px-4 pt-2" >
-                <input  type="checkbox" checked={todo.completed} onClick={handleToggleTodo} />
-                <span className="px-4">{todo.text}</span>
-                <button className="bg-red" onClick={handleDeleteTodo}>Delete Todo</button>
-            </li>
-        </div>
-    )
+	return (
+		<Draggable key={id} draggableId={id.toString()} index={index}>
+			{(provided: any) => {
+				return (
+					<li
+						ref={provided.innerRef}
+						{...provided.draggableProps}
+						{...provided.dragHandleProps}
+						id={id}
+						key={id}
+						index={index}
+						className=""
+					>
+						<div>
+							<input type="checkbox" onClick={updateItemStatus(id)}></input>
+						</div>
+						<span>{todo}</span>
+						<button className="bg-red" onClick={() => deleteTodo(id)}>
+							Delete Todo
+						</button>
+					</li>
+				);
+			}}
+		</Draggable>
+	);
 };
 
 export default TodoItem;

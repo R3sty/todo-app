@@ -1,52 +1,82 @@
-import { useState } from "react";
-import { Todo } from "../types";
-import  TodoItem from "./TodoItem";
+import TodoItem from './TodoItem';
+import { TodoListRenderItem } from '../types';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-interface TodoListProps {
-    todos: Todo[];
-    addTodo: (todo: Todo) => void;
-    deleteTodo: (id: number) => void;
-    updateTodo: (id: Todo) => void;
-}
+const TodoList: React.FC<TodoListRenderItem> = ({
+	items,
+	deleteTodo,
+	updateTodo,
+	updateLocalItem,
+	filter,
+}) => {
+	const rendered = (
+		id: number,
+		todo: string,
+		completed: boolean,
+		index: number
+	) => {
+		return (
+			<TodoItem
+				key={id}
+				id={id}
+				index={index}
+				todo={todo}
+				completed={completed}
+				deleteTodo={deleteTodo}
+				updateTodo={updateTodo}
+			/>
+		);
+	};
 
-const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, deleteTodo, updateTodo }) => {
-    const [newTodo, setNewTodo] = useState("");
+	const todoList = items.map(({ id, todo, completed }, index) => {
+		return rendered(id, todo, completed, index);
+	});
 
-    const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setNewTodo(event.target.value);
-    };
+	const activeList = items.map(({ id, todo, completed }, index) => {
+		if (completed) return '';
+		return rendered(id, todo, completed, index);
+	});
 
-    const handleNewTodoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (newTodo.trim())
-        {
-            addTodo({
-                id: Date.now(),
-                text: newTodo.trim(),
-                completed: false
-            })
-            setNewTodo("")
-        };
-    }
+	const completedList = items.map(({ id, todo, completed }, index) => {
+		if (!completed) return '';
+		return rendered(id, todo, completed, index);
+	});
 
-    return (
-        <div className="flex flex-col items-center justify-center absolute z-50 top-[108px] left-[24px]">
-            <form onSubmit={handleNewTodoSubmit} className="pb-4">
-                <input
-                    className="w-[337px] h-[48px] border-light-gray rounded-md"
-                    type="text"
-                    value={newTodo}
-                    onChange={handleNewTodoChange}
-                    placeholder="Create a new todo..."
-                />
-            </form>
-            <ul >
-                {todos.map((todo) => (
-                    <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} updateTodo={updateTodo} />
-                ))}
-            </ul>
-        </div>
-    )
+	const filteredList = () => {
+		if (filter === 'active') return activeList;
+		else if (filter === 'completed') return completedList;
+		else return todoList;
+	};
+
+	const handleOnDragEnd = (result: any) => {
+		if (!result.destination) return;
+		const updatedList = Array.from(items);
+		const [reorderedItem] = updatedList.splice(result.source.index, 1);
+		updatedList.splice(result.destination.index, 0, reorderedItem);
+		updateLocalItem(updatedList as any);
+	};
+
+	return (
+		<div>
+			<DragDropContext onDragEnd={handleOnDragEnd}>
+				<Droppable droppableId="droppable">
+					{(provided: any) => {
+						return (
+							<ul
+								className="droppable"
+								{...provided.draggableProps}
+								{...provided.dragHandleProps}
+								ref={provided.innerRef}
+							>
+								{filteredList()}
+								{provided.placeholder}
+							</ul>
+						);
+					}}
+				</Droppable>
+			</DragDropContext>
+		</div>
+	);
 };
 
 export default TodoList;
