@@ -23,17 +23,19 @@ const Form: React.FC<NewTodoProps> = ({ addTodo }) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="">
-			<div>
-				<button type="submit"></button>
-				<input
-					placeholder="Create a new todo..."
-					id="todos"
-					type="text"
-					ref={inputTodoText}
-				/>
-			</div>
-		</form>
+		<div className="pb-4 absolute top-[104px] left-[24px]">
+			<form onSubmit={handleSubmit} className=" ">
+				<div className="h-full flex justify-center">
+					<input
+						className="w-[327px] h-[48px] bg-white rounded-md text-xs text-light-bluishGray1 pl-4"
+						placeholder="Create a new todo..."
+						id="todos"
+						type="text"
+						ref={inputTodoText}
+					/>
+				</div>
+			</form>
+		</div>
 	);
 };
 

@@ -63,19 +63,20 @@ const Todo: React.FC = () => {
 	return (
 		<>
 			<Header />
-			<main>
-				<h1>Todo App</h1>
-				<Form addTodo={addTodo} />
-				<TodoList
-					items={items}
-					deleteTodo={deleteTodo}
-					updateTodo={updateTodo}
-					filter={filter}
-					updateLocalItem={updateLocalItem}
-				/>
-				<div>
-					<span>{itemsLeft()} items left</span>
-					<button onClick={clearCompleted}>Clear completed</button>
+			<main className="bg-light-gray h-screen">
+				<div className="">
+					<Form addTodo={addTodo} />
+					<TodoList
+						items={items}
+						deleteTodo={deleteTodo}
+						updateTodo={updateTodo}
+						filter={filter}
+						updateLocalItem={updateLocalItem}
+					/>
+					<div>
+						<span>{itemsLeft()} items left</span>
+						<button onClick={clearCompleted}>Clear completed</button>
+					</div>
 				</div>
 			</main>
 		</>
