@@ -4,6 +4,7 @@ import Form from '../components/Form';
 import TodoItem from './TodoItem';
 import TodoList from './TodoList';
 import Header from '../components/Header';
+import { buttons } from './helper';
 
 const getData = () => JSON.parse(localStorage.getItem('todos') || '');
 const setData = (key: string, value: any[]) =>
@@ -63,7 +64,8 @@ const Todo: React.FC = () => {
 	return (
 		<>
 			<Header />
-			<main className="bg-light-gray h-screen">
+
+			<main className="h-screen flex flex-row justify-center absolute top-[104px] left-[30px]">
 				<div className="">
 					<Form addTodo={addTodo} />
 					<TodoList
@@ -73,9 +75,22 @@ const Todo: React.FC = () => {
 						filter={filter}
 						updateLocalItem={updateLocalItem}
 					/>
-					<div>
-						<span>{itemsLeft()} items left</span>
-						<button onClick={clearCompleted}>Clear completed</button>
+					<div className="w-[327px] h-[48px] bg-white border border-light-gray rounded-md justify-between">
+						<div className="flex flex-row justify-evenly items-center h-full text-xs text-light-grayishBlue2">
+							<span>{itemsLeft()} items left</span>
+							<button onClick={clearCompleted}>Clear completed</button>
+						</div>
+					</div>
+					<div className="w-[327px] h-[48px] bg-white border border-light-gray rounded-md justify-between">
+						<ul className="flex flex-row justify-evenly items-center h-full text-xs text-light-grayishBlue2">
+							{buttons.map((list) => (
+								<li className="text-s" key={list.id}>
+									<button onClick={() => setFilter(`${list.name}`)}>
+										{list.name}
+									</button>
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 			</main>

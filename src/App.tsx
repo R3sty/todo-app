@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import Todo from './Todo/Todo';
 
 function App() {
 	return (
-		<div>
+		<div className="bg-red">
 			<Todo />
 		</div>
 	);

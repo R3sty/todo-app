@@ -1,5 +1,6 @@
 module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
+	darkMode: 'class',
 	theme: {
 		screens: {
 			desktop: '1440px',
@@ -12,12 +13,12 @@ module.exports = {
 				gray: '#fafafa',
 				grayishBlue1: '#e4e5f1',
 				grayishBlue2: '	#d2d3db',
-				darkGrayishBlue1: '	#9394a5',
+				darkGrayishBlue1: '#9394a5',
 				darkGrayishBlue2: '#484b6a',
 			},
 			dark: {
 				darkBlue1: '#161722',
-				desaturatedBlue: '#25273c',
+				desaturatedBlue: '#25273D',
 				lightGrayishBlue: '#cacde8',
 				lightGrayishBlueHover: '#e4e5f1',
 				darkGrayishBlue1: '#777a92',
