@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TodoListRender } from '../types';
 import { Draggable } from 'react-beautiful-dnd';
-import check from '../assets/icon-check.svg';
-import moon from '../assets/icon-moon.svg';
 
 const TodoItem: React.FC<TodoListRender> = ({
 	id,

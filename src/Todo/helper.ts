@@ -1,17 +1,17 @@
 export const buttons = [
     {
         id: 1,
-        name: "All",
+        name: "all",
         label: "show all todo items",
     },
     {
         id: 2,
-        name: "Active",
+        name: "active",
         label: "show all todo items",
     },
     {
         id: 3,
-        name: "Completed",
+        name: "completed",
         label: "show all completed items",
     },
 ]

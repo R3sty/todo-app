@@ -5,8 +5,8 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
-		<body className="font-josefin">
+		<div className="font-josefin bg-light-gray dark:bg-black min-h-screen">
 			<App />
-		</body>
+		</div>
 	</React.StrictMode>
 );

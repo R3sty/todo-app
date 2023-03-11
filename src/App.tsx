@@ -2,7 +2,7 @@ import Todo from './Todo/Todo';
 
 function App() {
 	return (
-		<div className="bg-red">
+		<div className="">
 			<Todo />
 		</div>
 	);
