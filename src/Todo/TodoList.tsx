@@ -57,23 +57,25 @@ const TodoList: React.FC<TodoListRenderItem> = ({
 	};
 
 	return (
-		<DragDropContext onDragEnd={handleOnDragEnd}>
-			<Droppable droppableId="droppable">
-				{(provided: any) => {
-					return (
-						<ul
-							className="droppable"
-							{...provided.draggableProps}
-							{...provided.dragHandleProps}
-							ref={provided.innerRef}
-						>
-							{filteredList()}
-							{provided.placeholder}
-						</ul>
-					);
-				}}
-			</Droppable>
-		</DragDropContext>
+		<div className="shadow-md">
+			<DragDropContext onDragEnd={handleOnDragEnd}>
+				<Droppable droppableId="droppable">
+					{(provided: any) => {
+						return (
+							<ul
+								className="droppable"
+								{...provided.draggableProps}
+								{...provided.dragHandleProps}
+								ref={provided.innerRef}
+							>
+								{filteredList()}
+								{provided.placeholder}
+							</ul>
+						);
+					}}
+				</Droppable>
+			</DragDropContext>
+		</div>
 	);
 };
 

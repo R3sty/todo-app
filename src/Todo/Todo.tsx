@@ -75,22 +75,30 @@ const Todo: React.FC = () => {
 						filter={filter}
 						updateLocalItem={updateLocalItem}
 					/>
-					<div className="w-[327px] h-[48px] bg-white border border-light-gray rounded-md justify-between">
-						<div className="flex flex-row justify-evenly items-center h-full text-xs text-light-grayishBlue2">
-							<span>{itemsLeft()} items left</span>
-							<button onClick={clearCompleted}>Clear completed</button>
+					<div className="w-[327px] h-[48px] bg-white border border-light-gray justify-between rounded-b-md">
+						<div className="flex flex-row justify-between items-center h-[48px] text-xs text-light-darkGrayishBlue2 shadow-md px-6">
+							<span className="rounded-l-md">{itemsLeft()} items left</span>
+							<button className="rounded-r-md" onClick={clearCompleted}>
+								Clear completed
+							</button>
 						</div>
 					</div>
-					<div className="w-[327px] h-[48px] bg-white border border-light-gray rounded-md justify-between">
-						<ul className="flex flex-row justify-evenly items-center h-full text-xs text-light-grayishBlue2">
+					<div className="w-[327px] h-[48px] bg-white border border-light-gray rounded-md justify-between mt-4 text-center">
+						<ul className="flex flex-row justify-evenly items-center h-full text-s text-light-grayishBlue3">
 							{buttons.map((list) => (
-								<li className="text-s" key={list.id}>
-									<button onClick={() => setFilter(`${list.name}`)}>
+								<li className="text-s " key={list.id}>
+									<button
+										className="capitalize"
+										onClick={() => setFilter(`${list.name}`)}
+									>
 										{list.name}
 									</button>
 								</li>
 							))}
 						</ul>
+						<div className="text-light-darkGrayishBlue1 text-regular mt-10">
+							<p>Drag and drop to reorder list</p>
+						</div>
 					</div>
 				</div>
 			</main>

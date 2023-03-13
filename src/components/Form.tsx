@@ -24,10 +24,10 @@ const Form: React.FC<NewTodoProps> = ({ addTodo }) => {
 
 	return (
 		<div className="pb-4">
-			<form onSubmit={handleSubmit} className=" ">
+			<form onSubmit={handleSubmit}>
 				<div className="h-full flex justify-center">
 					<input
-						className="w-[327px] h-[48px] bg-white rounded-md text-xs text-light-bluishGray1 pl-4 dark:bg-dark-desaturatedBlue"
+						className="w-[327px] h-[48px] bg-white rounded-md text-regular text-light-bluishGray1 pl-4 dark:bg-dark-desaturatedBlue"
 						placeholder="Create a new todo..."
 						id="todos"
 						type="text"

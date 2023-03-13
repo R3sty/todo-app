@@ -34,6 +34,7 @@ module.exports = {
 			l: ['40px', { lineHeight: '40px', fontWeight: 700 }],
 			m: ['18px', { lineHeight: '18px', fontWeight: 700 }],
 			s: ['14px', { lineHeight: '14px', fontWeight: 400 }],
+			regular: ['14px', { lineHeight: '14px', fontWeight: 300 }],
 			xs: ['12px', { lineHeight: '12px', fontWeight: 400 }],
 		},
 		extend: {},

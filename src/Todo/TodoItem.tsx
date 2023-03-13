@@ -37,7 +37,9 @@ const TodoItem: React.FC<TodoListRender> = ({
 							id={id}
 							key={id}
 							index={index}
-							className="w-[327px] h-[48px] bg-white border border-light-gray rounded-md justify-between"
+							className={`w-[327px] h-[48px] bg-white border border-light-gray justify-between ${
+								index === 0 ? 'rounded-t-md' : ''
+							} ${index === todo.length - 1 ? 'rounded-b-md' : ''}`}
 						>
 							<div className="flex justify-between items-center h-full">
 								<div
@@ -50,7 +52,7 @@ const TodoItem: React.FC<TodoListRender> = ({
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												className="rounded-full h-[22px] w-[22px]"
-												viewBox="0 0 11 9"
+												viewBox="0 0 10 10"
 											>
 												<linearGradient
 													id="gradient"
@@ -67,18 +69,29 @@ const TodoItem: React.FC<TodoListRender> = ({
 													height="100%"
 													fill="url(#gradient)"
 												/>
-												<path
-													fill="none"
-													stroke="#FFF"
-													strokeWidth="2"
-													d="M1 4.304L3.696 7l6-6"
-												/>
+												<g>
+													<g transform="scale(0.6) translate(3, 3.5)">
+														<path
+															fill="none"
+															stroke="#FFF"
+															strokeWidth="1"
+															d="M1 4.304L3.696 7l6-6"
+														/>
+													</g>
+												</g>
 											</svg>
 										) : (
-											<div className="inline-block rounded-full h-[22px] w-[22px] border-light-gray"></div>
+											<div className="inline-block rounded-full h-[24px] w-[25px] border-light-gray"></div>
 										)}
 									</div>
-									<span>{todo}</span>
+									<span
+										style={{
+											textDecoration: isCompleted ? 'line-through' : 'none',
+											color: isCompleted ? '#e4e5f1' : '#484b6a',
+										}}
+									>
+										{todo}
+									</span>
 								</div>
 
 								<div className="flex justify-end">
