@@ -61,7 +61,7 @@ const Header: React.FC = () => {
 	return (
 		<header
 			className={`relative w-full h-[200px] bg-cover bg-center ${
-				isMobile ? '' : 'desktop:bg-cover desktop:bg-center'
+				isMobile ? '' : 'desktop:bg-cover desktop:bg-center desktop:h-[300px]'
 			}`}
 			style={{
 				backgroundImage: `url(${
@@ -69,17 +69,15 @@ const Header: React.FC = () => {
 				})`,
 			}}
 		>
-			<div className="flex justify-between">
-				<div className="pt-12 pl-6 text-light-gray text-m">T O D O</div>
-				{theme === 'light' ? (
-					<button className="mr-8 mt-10" onClick={handleThemeSwitch}>
-						{moon}{' '}
+			<div className="flex items-center justify-between h-50 desktop:flex desktop:w-full desktop:justify-between desktop:pl-[600px] desktop:pr-[550px]">
+				<div className="pt-8 pl-8 desktop:pt-12 text-light-gray text-m desktop:text-l">
+					T O D O
+				</div>
+				<div className="desktop:pt-4">
+					<button className=" pr-8 pt-8" onClick={handleThemeSwitch}>
+						{theme === 'light' ? moon : sun}{' '}
 					</button>
-				) : (
-					<button className="mr-8 mt-10" onClick={handleThemeSwitch}>
-						{sun}{' '}
-					</button>
-				)}
+				</div>
 			</div>
 		</header>
 	);

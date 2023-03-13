@@ -64,8 +64,7 @@ const Todo: React.FC = () => {
 	return (
 		<>
 			<Header />
-
-			<main className="h-screen flex flex-row justify-center absolute top-[104px] left-[30px]">
+			<main className="h-screen flex flex-row justify-center fixed top-[104px] left-[30px] desktop:fixed desktop:items-center desktop:justify-center desktop:w-full desktop:h-screen desktop:top-[-150px]">
 				<div className="">
 					<Form addTodo={addTodo} />
 					<TodoList
@@ -75,15 +74,27 @@ const Todo: React.FC = () => {
 						filter={filter}
 						updateLocalItem={updateLocalItem}
 					/>
-					<div className="w-[327px] h-[48px] bg-white border border-light-gray justify-between rounded-b-md">
-						<div className="flex flex-row justify-between items-center h-[48px] text-xs text-light-darkGrayishBlue2 shadow-md px-6">
+					<div className="w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray rounded-b-md">
+						<div className="flex flex-row justify-between items-center h-full text-xs text-light-darkGrayishBlue2 px-6">
 							<span className="rounded-l-md">{itemsLeft()} items left</span>
+							<ul className="hidden desktop:flex flex-row justify-evenly items-center h-full text-s text-light-grayishBlue3">
+								{buttons.map((list) => (
+									<li className="text-s" key={list.id}>
+										<button
+											className="capitalize px-4"
+											onClick={() => setFilter(`${list.name}`)}
+										>
+											{list.name}
+										</button>
+									</li>
+								))}
+							</ul>
 							<button className="rounded-r-md" onClick={clearCompleted}>
 								Clear completed
 							</button>
 						</div>
 					</div>
-					<div className="w-[327px] h-[48px] bg-white border border-light-gray rounded-md justify-between mt-4 text-center">
+					<div className="desktop:hidden w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray rounded-md justify-between mt-4 text-center">
 						<ul className="flex flex-row justify-evenly items-center h-full text-s text-light-grayishBlue3">
 							{buttons.map((list) => (
 								<li className="text-s " key={list.id}>

@@ -57,7 +57,7 @@ const TodoList: React.FC<TodoListRenderItem> = ({
 	};
 
 	return (
-		<div className="shadow-md">
+		<div className="shadow-md ">
 			<DragDropContext onDragEnd={handleOnDragEnd}>
 				<Droppable droppableId="droppable">
 					{(provided: any) => {

@@ -29,7 +29,7 @@ const TodoItem: React.FC<TodoListRender> = ({
 		<Draggable key={id} draggableId={id.toString()} index={index}>
 			{(provided: any) => {
 				return (
-					<div className="flex justify-center items-center text-light-darkGrayishBlue1 text-s">
+					<div className="flex justify-center items-center text-light-darkGrayishBlue1 dark:text-dark-lightGrayishBlue text-s">
 						<li
 							ref={provided.innerRef}
 							{...provided.draggableProps}
@@ -37,9 +37,9 @@ const TodoItem: React.FC<TodoListRender> = ({
 							id={id}
 							key={id}
 							index={index}
-							className={`w-[327px] h-[48px] bg-white border border-light-gray justify-between ${
+							className={`w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray justify-between dark:text-dark-lightGrayishBlue dark:bg-dark-desaturatedBlue ${
 								index === 0 ? 'rounded-t-md' : ''
-							} ${index === todo.length - 1 ? 'rounded-b-md' : ''}`}
+							}`}
 						>
 							<div className="flex justify-between items-center h-full">
 								<div
@@ -81,10 +81,11 @@ const TodoItem: React.FC<TodoListRender> = ({
 												</g>
 											</svg>
 										) : (
-											<div className="inline-block rounded-full h-[24px] w-[25px] border-light-gray"></div>
+											<div className="inline-block rounded-full h-[24px] w-[25px] border-light-gray dark:border-dark-"></div>
 										)}
 									</div>
 									<span
+										className=""
 										style={{
 											textDecoration: isCompleted ? 'line-through' : 'none',
 											color: isCompleted ? '#e4e5f1' : '#484b6a',
