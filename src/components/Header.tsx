@@ -4,10 +4,18 @@ import desktopDark from '../assets/bg-desktop-dark.jpg';
 import mobileLight from '../assets/bg-mobile-light.jpg';
 import mobileDark from '../assets/bg-mobile-dark.jpg';
 
-const Header: React.FC = () => {
-	const [theme, setTheme] = useState<'light' | 'dark'>('light');
-	const [isMobile, setIsMobile] = useState(false);
-
+type HeaderProps = {
+	theme: 'light' | 'dark';
+	isMobile: boolean;
+	setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
+	setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>;
+};
+const Header: React.FC<HeaderProps> = ({
+	theme,
+	isMobile,
+	setIsMobile,
+	setTheme,
+}) => {
 	const mobileBackground = theme === 'light' ? mobileLight : mobileDark;
 	const desktopBackground = theme === 'light' ? desktopLight : desktopDark;
 

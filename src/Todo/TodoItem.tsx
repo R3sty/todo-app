@@ -37,7 +37,7 @@ const TodoItem: React.FC<TodoListRender> = ({
 							id={id}
 							key={id}
 							index={index}
-							className={`w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray justify-between dark:text-dark-lightGrayishBlue dark:bg-dark-desaturatedBlue ${
+							className={`w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray dark:bg-dark-desaturatedBlue dark:border-dark-darkGrayishBlue3 justify-between ${
 								index === 0 ? 'rounded-t-md' : ''
 							}`}
 						>
@@ -81,15 +81,14 @@ const TodoItem: React.FC<TodoListRender> = ({
 												</g>
 											</svg>
 										) : (
-											<div className="inline-block rounded-full h-[24px] w-[25px] border-light-gray dark:border-dark-"></div>
+											<div className="inline-block rounded-full h-[24px] w-[25px] border-light-gray dark:bg-dark-desaturatedBlue dark:border-dark-darkGrayishBlue3"></div>
 										)}
 									</div>
 									<span
-										className=""
-										style={{
-											textDecoration: isCompleted ? 'line-through' : 'none',
-											color: isCompleted ? '#e4e5f1' : '#484b6a',
-										}}
+										className={`dark:text-white ${
+											isCompleted ? 'line-through' : ''
+										}`}
+										style={{ color: isCompleted ? '#e4e5f1' : '#484b6a' }}
 									>
 										{todo}
 									</span>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NewTodoState } from '../types';
 import Form from '../components/Form';
-import TodoItem from './TodoItem';
 import TodoList from './TodoList';
 import Header from '../components/Header';
 import { buttons } from './helper';
@@ -15,6 +14,8 @@ const Todo: React.FC = () => {
 	const myTodo = localStorage.getItem('todos') ? getData() : [];
 	const [filter, setFilter] = useState('all');
 	const [items, setItems] = useState<NewTodoState[]>(myTodo);
+	const [theme, setTheme] = useState<'light' | 'dark'>('light');
+	const [isMobile, setIsMobile] = useState(false);
 
 	useEffect(() => {
 		setData('todos', items);
@@ -63,7 +64,12 @@ const Todo: React.FC = () => {
 
 	return (
 		<>
-			<Header />
+			<Header
+				theme={theme}
+				isMobile={isMobile}
+				setIsMobile={setIsMobile}
+				setTheme={setTheme}
+			/>
 			<main className="h-screen flex flex-row justify-center fixed top-[104px] left-[30px] desktop:fixed desktop:items-center desktop:justify-center desktop:w-full desktop:h-screen desktop:top-[-150px]">
 				<div className="">
 					<Form addTodo={addTodo} />
@@ -74,8 +80,8 @@ const Todo: React.FC = () => {
 						filter={filter}
 						updateLocalItem={updateLocalItem}
 					/>
-					<div className="w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray rounded-b-md">
-						<div className="flex flex-row justify-between items-center h-full text-xs text-light-darkGrayishBlue2 px-6">
+					<div className="w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray rounded-b-md dark:bg-dark-desaturatedBlue dark:border-dark-darkGrayishBlue3">
+						<div className="flex flex-row justify-between items-center h-full text-xs dark:text-white px-6">
 							<span className="rounded-l-md">{itemsLeft()} items left</span>
 							<ul className="hidden desktop:flex flex-row justify-evenly items-center h-full text-s text-light-grayishBlue3">
 								{buttons.map((list) => (
