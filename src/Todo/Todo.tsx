@@ -81,13 +81,13 @@ const Todo: React.FC = () => {
 						updateLocalItem={updateLocalItem}
 					/>
 					<div className="w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray rounded-b-md dark:bg-dark-desaturatedBlue dark:border-dark-darkGrayishBlue3">
-						<div className="flex flex-row justify-between items-center h-full text-xs dark:text-white px-6">
+						<div className="flex flex-row justify-between items-center h-full text-xs dark:text-white px-6 shadow-lg">
 							<span className="rounded-l-md">{itemsLeft()} items left</span>
 							<ul className="hidden desktop:flex flex-row justify-evenly items-center h-full text-s text-light-grayishBlue3">
 								{buttons.map((list) => (
 									<li className="text-s" key={list.id}>
 										<button
-											className="capitalize px-4"
+											className="capitalize px-4 hover:text-'#3A7CFD'"
 											onClick={() => setFilter(`${list.name}`)}
 										>
 											{list.name}
@@ -100,12 +100,13 @@ const Todo: React.FC = () => {
 							</button>
 						</div>
 					</div>
-					<div className="desktop:hidden w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray rounded-md justify-between mt-4 text-center">
-						<ul className="flex flex-row justify-evenly items-center h-full text-s text-light-grayishBlue3">
+
+					<div className="desktop:hidden  w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] bg-white border border-light-gray rounded-md justify-between mt-4 text-center">
+						<ul className=" flex flex-row justify-evenly items-center h-full text-s text-light-grayishBlue3 ">
 							{buttons.map((list) => (
 								<li className="text-s " key={list.id}>
 									<button
-										className="capitalize"
+										className="capitalize hover:text-'#3A7CFD'"
 										onClick={() => setFilter(`${list.name}`)}
 									>
 										{list.name}
@@ -113,9 +114,9 @@ const Todo: React.FC = () => {
 								</li>
 							))}
 						</ul>
-						<div className="text-light-darkGrayishBlue1 text-regular mt-10">
-							<p>Drag and drop to reorder list</p>
-						</div>
+					</div>
+					<div className="text-light-darkGrayishBlue1 text-regular mt-20 text-center">
+						<p>Drag and drop to reorder list</p>
 					</div>
 				</div>
 			</main>
