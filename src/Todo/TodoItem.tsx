@@ -84,11 +84,20 @@ const TodoItem: React.FC<TodoListRender> = ({
 											<div className="inline-block rounded-full h-[24px] w-[25px] border-light-gray dark:bg-dark-desaturatedBlue dark:border-dark-darkGrayishBlue3"></div>
 										)}
 									</div>
-									<span
+									{/* <span
 										className={`dark:text-white ${
 											isCompleted ? 'line-through' : ''
 										}`}
-										style={{ color: isCompleted ? '#e4e5f1' : '#484b6a' }}
+										style={{ color: isCompleted ? '#e4e5f1' : '#e4e5f1' }}
+									>
+										{todo}
+									</span> */}
+									<span
+										className={`${
+											isCompleted
+												? 'line-through text-light-bluishGray1 dark:text-dark-lightGrayishBlue'
+												: ''
+										} text-light-darkGrayishBlue2 dark:text-dark-lightGrayishBlue`}
 									>
 										{todo}
 									</span>
