@@ -10,7 +10,7 @@ const setData = (key: string, value: any[]) =>
 	localStorage.setItem(key, JSON.stringify(value));
 
 const Todo: React.FC = () => {
-	const [newTodo, setNewTodo] = useState('');
+	// const [newTodo, setNewTodo] = useState('');
 	const myTodo = localStorage.getItem('todos') ? getData() : [];
 	const [filter, setFilter] = useState('all');
 	const [items, setItems] = useState<NewTodoState[]>(myTodo);
@@ -63,15 +63,15 @@ const Todo: React.FC = () => {
 	};
 
 	return (
-		<>
+		<div>
 			<Header
 				theme={theme}
 				isMobile={isMobile}
 				setIsMobile={setIsMobile}
 				setTheme={setTheme}
 			/>
-			<main className="h-screen flex flex-row justify-center fixed top-[104px] left-[30px] desktop:fixed desktop:items-center desktop:justify-center desktop:w-full desktop:h-screen desktop:top-[-150px]">
-				<div className="">
+			<main className="h-screen flex justify-center fixed top-[104px] left-[30px] desktop:w-full desktop:flex desktop:justify-center desktop:top-[104px] desktop:left-[-20px]">
+				<div>
 					<Form addTodo={addTodo} />
 					<TodoList
 						items={items}
@@ -119,7 +119,7 @@ const Todo: React.FC = () => {
 					</div>
 				</div>
 			</main>
-		</>
+		</div>
 	);
 };
 

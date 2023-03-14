@@ -77,12 +77,13 @@ const Header: React.FC<HeaderProps> = ({
 				})`,
 			}}
 		>
-			<div className="flex items-center justify-between h-50 desktop:flex desktop:w-full desktop:justify-between desktop:pl-[600px] desktop:pr-[550px]">
+			{/* <div className="flex items-center justify-between h-50 desktop:flex desktop:w-full desktop:justify-between desktop:pl-[700px] desktop:pr-[750px] tablet:pl-[200px] tablet:pr-[250px]"> */}
+			<div className="flex items-center justify-between w-[327px] h-[48px] desktop:w-[540px] desktop:h-[64px] desktop:flex desktop:items-center desktop:justify-between desktop:mx-auto">
 				<div className="pt-8 pl-8 desktop:pt-12 text-light-gray text-m desktop:text-l">
 					T O D O
 				</div>
-				<div className="desktop:pt-4">
-					<button className=" pr-8 pt-8" onClick={handleThemeSwitch}>
+				<div className="tablet:pt-4 desktop:pr-12">
+					<button className="pt-8" onClick={handleThemeSwitch}>
 						{theme === 'light' ? moon : sun}{' '}
 					</button>
 				</div>
